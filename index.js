@@ -36,7 +36,7 @@ const savedData = {
             data: new Map(),
             header: "# Named Character",
             replace: 'named character',
-            tags: [ "namedcharacter", "clothing", "opinion"]
+            tags: [ "namedcharacter", "clothing", "opinion", "blessing"] //todo: need to make configurable
         },
         {
             name: metadata_keys.locations,
