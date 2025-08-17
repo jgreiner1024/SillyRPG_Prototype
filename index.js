@@ -83,21 +83,6 @@ function createYAML() {
     return yamlText;
 }
 
-
-
-
-//TODO: load some other way?!?
-async function loadDefaultRules() {
-    const response = await fetch('./scripts/extensions/third-party/SaveNamedCharacter/defaultrules.json');
-    const defaultrules = await response.json();
-    return defaultrules;
-}
-
-
-
-
-
-
 async function setDataExtensionPrompt() {
     const context = getContext();
 
@@ -139,19 +124,26 @@ async function setRulesExtensionPrompt() {
     const context = getContext();
 
     if(context.extensionSettings && context.extensionSettings.note && context.extensionSettings.note.chara) {
-        const charaNote = context.extensionSettings.note.chara.find((chara) => chara.name === getCharaFilename());
-        if(charaNote) {
+        let charaNote = context.extensionSettings.note.chara.find((chara) => chara.name === getCharaFilename());
+        
+        //load the default if the prompt is null or whitespace
+        if(!charaNote || !charaNote.prompt || /^\s*$/.test(charaNote.prompt)) {
+            //we need to create a new charaNote for the default rules
 
-            //load the default if the prompt is null or whitespace
-            if(!charaNote.prompt || /^\s*$/.test(charaNote.prompt)) {
-                const defaultrules = (await fetch('./scripts/extensions/third-party/SaveNamedCharacter/defaultrules.json')).json();
-                charaNote.prompt = yaml.stringify(defaultrules);
-                charaNote.useChara = false;
-                context.saveSettingsDebounced();
+            if(!charaNote) { //create a new charaNote
+                    charaNote = {
+                    name: getCharaFilename(),
+                }
+                context.extensionSettings.note.chara.push(charaNote);
             }
 
-            context.setExtensionPrompt(`${MODULE_NAME}_rules_yaml`, charaNote.prompt, extension_prompt_types.BEFORE_PROMPT , 0, false, extension_prompt_roles.SYSTEM);
+            //update the charaNote with the default rules
+            const defaultrules = (await fetch('/scripts/extensions/third-party/SillyRPG_Prototype/defaultrules.json')).json();
+            charaNote.prompt = yaml.stringify(defaultrules);
+            charaNote.useChara = false; //we don't actually want to use the charaNote, we are just using it for storage and editing until we build a real UI.
+            context.saveSettingsDebounced();
         }
+        context.setExtensionPrompt(`${MODULE_NAME}_rules_yaml`, charaNote.prompt, extension_prompt_types.BEFORE_PROMPT , 0, false, extension_prompt_roles.SYSTEM);
     }
 }
 
