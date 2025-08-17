@@ -1,0 +1,154 @@
+
+{
+  "rules": [
+    "When entering a location, you must add the location text data. The text data for the location should be in YAML format using the \"Location Schema\" below and placed inside inside <location> XML tag at the end of the message.",
+    "When a named character is introduced you must add the named character text data. The text data for the named character should be in YAML format using the \"Named Character Schema\" below and placed inside <namedcharacter> XML tag at the end of the message.",
+    "When an existing named character changes their opinion of {{user}} you must add the player opinion text data. The text data for the player opinion should be in YAML format using the \"Player Opinion Schema\" below and placed inside <namedcharacter> XML tag at the end of the message.",
+    "When an existing named character changes their clothes you must add the clothing text data. The text data for the clothing should be in YAML format using the \"Named Character Clothing Schema\" below and placed inside <namedcharacter> XML tag at the end of the message."
+  ],
+  "schemas": [
+    {
+      "type": "object",
+      "title": "Location Schema",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "A unique 4-digit hexadecimal identifier for the location.",
+          "pattern": "^[0-9A-Fa-f]{4}$"
+        },
+        "name": {
+          "type": "string",
+          "description": "The full name of the location. A nickname in single quotes is optional."
+        },
+        "outdoors": {
+          "type": "boolean",
+          "description": "Indicates if the location is outdoors (true) or indoors (false)."
+        },
+        "location": {
+          "type": "string",
+          "description": "The type of location such as grasslands, forest, cave, road, city, building, hallway, room, etc."
+        },
+        "desc": {
+          "type": "string",
+          "description": "A short paragraph describing the sites, sounds, and smells of the location."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "outdoors",
+        "location",
+        "desc"
+      ]
+    },
+    {
+      "type": "object",
+      "title": "Named Character Schema",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "A unique 4-digit hexadecimal identifier for the named character.",
+          "pattern": "^[0-9A-Fa-f]{4}$"
+        },
+        "name": {
+          "type": "string",
+          "description": "The full name of the named character. A nickname in quotes is optional."
+        },
+        "age": {
+          "type": "integer",
+          "description": "The age of the named character in years."
+        },
+        "stats": {
+          "type": "string",
+          "description": "The Strength, Perception, Endurance, Charisma, Intelligence, Agility, and Luck (S.P.E.C.I.A.L.) stats of the named character.",
+          "pattern": "^S:\\d{1,2} P:\\d{1,2} E:\\d{1,2} C:\\d{1,2} I:\\d{1,2} A:\\d{1,2} L:\\d{1,2}$"
+        },
+        "shortdescription": {
+          "type": "string",
+          "description": "A single sentence summarizing the named character include visible personality quirks, height, weight, eye color and hair color. do not include their name."
+        },
+        "background": {
+          "type": "string",
+          "description": "A short paragraph describing the named character's background and history before the story begins."
+        },
+        "personality": {
+          "type": "string",
+          "description": "A short paragraph describing the named character's personality, behavior, and quirks."
+        },
+        "opinion": {
+          "type": "string",
+          "description": "A short paragraph describing the named character's opinion of {{user}}."
+        },
+        "appearance": {
+          "type": "string",
+          "description": "A short paragraph describing the named character's physical appearance, excluding clothing. Include details like height, body type, race, skin tone, hair, and eyes. For female characters, include hip and breast size. For male characters, include facial hair style."
+        },
+        "clothing": {
+          "type": "string",
+          "description": "A description of the named character's current clothing, accessories, and their condition."
+        }
+      },
+      "required": [
+        "id",
+        "age",
+        "name",
+        "stats",
+        "shortdescription",
+        "background",
+        "personality",
+        "opinion",
+        "appearance",
+        "clothing"
+      ]
+    },
+    {
+      "type": "object",
+      "title": "Player Opinion Schema",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The 4-digit hexadecimal identifier of the named character.",
+          "pattern": "^[0-9A-Fa-f]{4}$"
+        },
+        "name": {
+          "type": "string",
+          "description": "The full name of the named character. A nickname in quotes is optional."
+        },
+        "opinion": {
+          "type": "string",
+          "description": "A short paragraph describing the named character's opinion of {{user}}."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "opinion"
+      ]
+    },
+    {
+      "type": "object",
+      "title": "Named Character Clothing Schema",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The 4-digit hexadecimal identifier of the named character.",
+          "pattern": "^[0-9A-Fa-f]{4}$"
+        },
+        "name": {
+          "type": "string",
+          "description": "The full name of the named character. A nickname in quotes is optional."
+        },
+        "clothing": {
+          "type": "string",
+          "description": "A description of the named character's current clothing, accessories, and their condition."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "clothing"
+      ]
+    }
+
+  ]
+}

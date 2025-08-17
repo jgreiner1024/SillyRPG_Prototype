@@ -1,0 +1,12 @@
+{
+    "display_name": "Silly RPG Prototype",
+    "loading_order": 5,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "jgreiner1024",
+    "version": "1.0.0",
+    "homePage": "https://github.com/jgreiner1024/SillyRPG_Prototype",
+    "auto_update": true
+}
