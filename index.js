@@ -138,7 +138,7 @@ async function setRulesExtensionPrompt() {
             }
 
             //update the charaNote with the default rules
-            const defaultrules = (await fetch('/scripts/extensions/third-party/SillyRPG_Prototype/defaultrules.json')).json();
+            const defaultrules = (await fetch('./scripts/extensions/third-party/SillyRPG_Prototype/defaultrules.json')).json();
             charaNote.prompt = yaml.stringify(defaultrules);
             charaNote.useChara = false; //we don't actually want to use the charaNote, we are just using it for storage and editing until we build a real UI.
             context.saveSettingsDebounced();
