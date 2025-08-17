@@ -3,8 +3,8 @@
   "rules": [
     "When entering a location, you must add the location text data. The text data for the location should be in YAML format using the \"Location Schema\" below and placed inside inside <location> XML tag at the end of the message.",
     "When a named character is introduced you must add the named character text data. The text data for the named character should be in YAML format using the \"Named Character Schema\" below and placed inside <namedcharacter> XML tag at the end of the message.",
-    "When an existing named character changes their opinion of {{user}} you must add the player opinion text data. The text data for the player opinion should be in YAML format using the \"Player Opinion Schema\" below and placed inside <namedcharacter> XML tag at the end of the message.",
-    "When an existing named character changes their clothes you must add the clothing text data. The text data for the clothing should be in YAML format using the \"Named Character Clothing Schema\" below and placed inside <namedcharacter> XML tag at the end of the message."
+    "When an existing named character changes their opinion of {{user}} you must add the player opinion text data. The text data for the player opinion should be in YAML format using the \"Player Opinion Schema\" below and placed inside <opinion> XML tag at the end of the message.",
+    "When an existing named character changes their clothes you must add the clothing text data. The text data for the clothing should be in YAML format using the \"Named Character Clothing Schema\" below and placed inside <clothing> XML tag at the end of the message."
   ],
   "schemas": [
     {
