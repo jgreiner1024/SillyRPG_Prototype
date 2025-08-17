@@ -110,10 +110,6 @@
           "description": "The 4-digit hexadecimal identifier of the named character.",
           "pattern": "^[0-9A-Fa-f]{4}$"
         },
-        "name": {
-          "type": "string",
-          "description": "The full name of the named character. A nickname in quotes is optional."
-        },
         "opinion": {
           "type": "string",
           "description": "A short paragraph describing the named character's opinion of {{user}}."
@@ -121,7 +117,6 @@
       },
       "required": [
         "id",
-        "name",
         "opinion"
       ]
     },
@@ -134,10 +129,6 @@
           "description": "The 4-digit hexadecimal identifier of the named character.",
           "pattern": "^[0-9A-Fa-f]{4}$"
         },
-        "name": {
-          "type": "string",
-          "description": "The full name of the named character. A nickname in quotes is optional."
-        },
         "clothing": {
           "type": "string",
           "description": "A description of the named character's current clothing, accessories, and their condition."
@@ -145,7 +136,6 @@
       },
       "required": [
         "id",
-        "name",
         "clothing"
       ]
     }
